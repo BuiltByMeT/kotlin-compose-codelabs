@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -82,21 +83,26 @@ fun BuildSquare(fillColor: Color, headerText: String, bodyText: String, modifier
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .fillMaxSize()
+        // so referencing the parameter worked for .weight
+        // but why won't it let me just assign .weight in here
+        // if it will let me circumvent that out there
+        // is it b/c it doesn't know that it's nested from here
+        // so it makes sure by doing it as an argument?
+        modifier = modifier
             .background(fillColor)
+            .fillMaxSize()
+            .padding(all = 16.dp)
     ) {
         Text(
+            fontWeight = FontWeight.Bold,
             text = headerText,
             textAlign = TextAlign.Center,
             modifier = Modifier
-                .padding(all = 16.dp)
+                .padding(bottom = 16.dp)
         )
         Text(
             text = bodyText,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .padding(all = 16.dp)
+            textAlign = TextAlign.Justify
         )
     }
 }
