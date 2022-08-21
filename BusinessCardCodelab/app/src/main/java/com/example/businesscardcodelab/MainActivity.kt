@@ -1,28 +1,24 @@
 package com.example.businesscardcodelab
 
-import android.graphics.drawable.PaintDrawable
-import android.graphics.drawable.shapes.OvalShape
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material.icons.rounded.Phone
+import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.layout.VerticalAlignmentLine
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,39 +48,32 @@ fun BusinessCard() {
     Column(
         // background
         modifier = Modifier
-            .fillMaxSize()
             .background(Color(0xFF073042))
     ) {
         // profile picture, name, title
         Spacer(
             modifier = Modifier
-                //.height(250.dp)
-                .weight(1f)
+                .weight(5f)
         )
-        ProfileInfo()
-        Spacer(
-            modifier = Modifier
-                .weight(1f)
-        )
-        ContactInfo()
-        // contact info
+        ProfileInfo(modifier = Modifier.weight(4f))
+        Spacer(Modifier.weight(3f))
+        ContactInfo(Modifier.weight(4f))
     }
 }
 
 @Composable
-fun ProfileInfo() {
+fun ProfileInfo(modifier: Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
-            .padding(top = 200.dp)
     ) {
         val profilePicture = painterResource(id = R.drawable.android_logo)
-        var profileName = stringResource(id = R.string.profile_name)
-        var profileProfession = stringResource(id = R.string.profile_profession)
+        val profileName = stringResource(id = R.string.profile_name)
+        val profileProfession = stringResource(id = R.string.profile_profession)
         Image(
             painter = profilePicture,
-            contentDescription = "profile picture",
+            contentDescription = stringResource(id = R.string.profile_picture_description),
             modifier = Modifier
                 //    .border(20.dp, Color.Black, RoundedCornerShape(300.dp))
                 .size(100.dp)
@@ -105,8 +94,53 @@ fun ProfileInfo() {
 }
 
 @Composable
-fun ContactInfo() {
-    //
+fun ContactInfo(modifier: Modifier) {
+    val contactPhoneNumber = stringResource(id = R.string.contact_phone)
+    val contactShareLink = stringResource(id = R.string.contact_github_profile)
+    val contactEmail = stringResource(id = R.string.contact_email)
+    val icons = Icons.Rounded
+    var contactIconDescription = stringResource(id = R.string.contact_phone_icon_description)
+    var contactString = contactPhoneNumber
+    Column(modifier) {
+        ContactRow(icons.Phone, contactIconDescription, contactString)
+        contactIconDescription = stringResource(id = R.string.contact_share_icon_description)
+        contactString = contactShareLink
+        ContactRow(icons.Share, contactIconDescription, contactString)
+        contactIconDescription = stringResource(id = R.string.contact_email_icon_description)
+        contactString = contactEmail
+        ContactRow(icons.Email, contactIconDescription, contactString)
+    }
+}
+
+@Composable
+fun ContactRow(
+    contactIcon: ImageVector,
+    contactIconDescription: String,
+    contactString: String
+) {
+    Spacer(
+        modifier = Modifier
+            .padding(start = 0.dp)
+            .fillMaxWidth()
+            .size(1.dp)
+            .background(Color(0xF0456174))
+    )
+    Row(
+        modifier = Modifier
+            .padding(start = 50.dp, top = 10.dp, bottom = 10.dp)
+    ) {
+        Icon(
+            contactIcon,
+            contentDescription = contactIconDescription,
+            tint = Color(0xFF0BDF16)
+        )
+        Text(
+            text = contactString,
+            color = Color.White,
+            modifier = Modifier
+                .padding(start = 50.dp)
+        )
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)

@@ -5,4 +5,8 @@
     <string name="contact_phone">555–555–5555</string>
     <string name="contact_github_profile">BuiltByMeT</string>
     <string name="contact_email">emailaddress@domain.com</string>
+    <string name="profile_picture_description">profile picture</string>
+    <string name="contact_phone_icon_description">phone icon</string>
+    <string name="contact_share_icon_description">share icon</string>
+    <string name="contact_email_icon_description">email icon</string>
 </resources>
