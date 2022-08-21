@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Business Card Codelab</string>
+    <string name="profile_name">BuiltByMeT</string>
+    <string name="profile_profession">Programmer/Analyst</string>
+    <string name="contact_phone">555–555–5555</string>
+    <string name="contact_github_profile">BuiltByMeT</string>
+    <string name="contact_email">emailaddress@domain.com</string>
+</resources>
