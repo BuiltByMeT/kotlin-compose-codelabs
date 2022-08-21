@@ -71,11 +71,11 @@ fun ProfileInfo(modifier: Modifier) {
         val profilePicture = painterResource(id = R.drawable.android_logo)
         val profileName = stringResource(id = R.string.profile_name)
         val profileProfession = stringResource(id = R.string.profile_profession)
+        val profilePictureDescription = stringResource(id = R.string.profile_picture_description)
         Image(
             painter = profilePicture,
-            contentDescription = stringResource(id = R.string.profile_picture_description),
+            contentDescription = profilePictureDescription,
             modifier = Modifier
-                //    .border(20.dp, Color.Black, RoundedCornerShape(300.dp))
                 .size(100.dp)
                 .wrapContentWidth(Alignment.CenterHorizontally)
                 .wrapContentHeight(Alignment.CenterVertically)
@@ -98,17 +98,14 @@ fun ContactInfo(modifier: Modifier) {
     val contactPhoneNumber = stringResource(id = R.string.contact_phone)
     val contactShareLink = stringResource(id = R.string.contact_github_profile)
     val contactEmail = stringResource(id = R.string.contact_email)
+    val contactPhoneIconDescription = stringResource(id = R.string.contact_phone_icon_description)
+    val contactShareIconDescription = stringResource(id = R.string.contact_share_icon_description)
+    val contactEmailIconDescription = stringResource(id = R.string.contact_email_icon_description)
     val icons = Icons.Rounded
-    var contactIconDescription = stringResource(id = R.string.contact_phone_icon_description)
-    var contactString = contactPhoneNumber
-    Column(modifier) {
-        ContactRow(icons.Phone, contactIconDescription, contactString)
-        contactIconDescription = stringResource(id = R.string.contact_share_icon_description)
-        contactString = contactShareLink
-        ContactRow(icons.Share, contactIconDescription, contactString)
-        contactIconDescription = stringResource(id = R.string.contact_email_icon_description)
-        contactString = contactEmail
-        ContactRow(icons.Email, contactIconDescription, contactString)
+    Column(modifier.wrapContentHeight(Alignment.CenterVertically)) {
+        ContactRow(icons.Phone, contactPhoneIconDescription, contactPhoneNumber)
+        ContactRow(icons.Share, contactShareIconDescription, contactShareLink)
+        ContactRow(icons.Email, contactEmailIconDescription, contactEmail)
     }
 }
 
@@ -120,7 +117,6 @@ fun ContactRow(
 ) {
     Spacer(
         modifier = Modifier
-            .padding(start = 0.dp)
             .fillMaxWidth()
             .size(1.dp)
             .background(Color(0xF0456174))
